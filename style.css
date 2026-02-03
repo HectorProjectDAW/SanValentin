@@ -1,0 +1,531 @@
+/* ========================================
+   VARIABLES Y RESET
+   ======================================== */
+:root {
+    /* Colores Nostálgicos (Inicio del viaje) */
+    --nostalgic-bg: #f5f1e8;
+    --nostalgic-text: #5a4a42;
+    --nostalgic-accent: #c9a97e;
+    --nostalgic-overlay: rgba(245, 241, 232, 0.9);
+    
+    /* Colores Vibrantes (Final del viaje) */
+    --vibrant-bg: #ffe6f0;
+    --vibrant-text: #2d0a1f;
+    --vibrant-accent: #ff1744;
+    --vibrant-glow: #ff4081;
+    
+    /* Transiciones */
+    --transition-smooth: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Georgia', 'Times New Roman', serif;
+    overflow-x: hidden;
+    background: var(--nostalgic-bg);
+    color: var(--nostalgic-text);
+    transition: var(--transition-smooth);
+}
+
+/* ========================================
+   PANTALLA DE LOGIN
+   ======================================== */
+#login-screen {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.8s ease;
+}
+
+#login-screen.active {
+    opacity: 1;
+    pointer-events: all;
+}
+
+.login-container {
+    background: rgba(255, 255, 255, 0.95);
+    padding: 3rem 2.5rem;
+    border-radius: 20px;
+    text-align: center;
+    max-width: 400px;
+    width: 90%;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+    animation: slideUp 0.6s ease;
+}
+
+@keyframes slideUp {
+    from {
+        transform: translateY(50px);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+.heart-icon {
+    font-size: 4rem;
+    animation: heartbeat 1.5s ease infinite;
+}
+
+@keyframes heartbeat {
+    0%, 100% { transform: scale(1); }
+    25% { transform: scale(1.1); }
+    50% { transform: scale(1); }
+}
+
+.login-title {
+    font-size: 2rem;
+    margin: 1rem 0 0.5rem;
+    color: #333;
+}
+
+.login-subtitle {
+    color: #666;
+    margin-bottom: 2rem;
+    font-size: 1rem;
+}
+
+#password-input {
+    width: 100%;
+    padding: 1rem;
+    border: 2px solid #ddd;
+    border-radius: 10px;
+    font-size: 1rem;
+    margin-bottom: 1rem;
+    transition: border-color 0.3s;
+}
+
+#password-input:focus {
+    outline: none;
+    border-color: #667eea;
+}
+
+#enter-btn {
+    width: 100%;
+    padding: 1rem;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    border: none;
+    border-radius: 10px;
+    font-size: 1.1rem;
+    cursor: pointer;
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+#enter-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 20px rgba(102, 126, 234, 0.4);
+}
+
+.error-message {
+    color: #e74c3c;
+    margin-top: 1rem;
+    font-size: 0.9rem;
+    min-height: 20px;
+}
+
+/* ========================================
+   CONTENIDO PRINCIPAL
+   ======================================== */
+#main-content {
+    display: none;
+    position: relative;
+}
+
+#main-content.active {
+    display: block;
+}
+
+/* ========================================
+   PARALLAX BACKGROUNDS
+   ======================================== */
+.parallax-bg {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    will-change: transform;
+}
+
+#parallax-layer-1 {
+    background: radial-gradient(circle at 20% 50%, rgba(201, 169, 126, 0.1) 0%, transparent 50%);
+}
+
+#parallax-layer-2 {
+    background: radial-gradient(circle at 80% 30%, rgba(201, 169, 126, 0.15) 0%, transparent 50%);
+}
+
+#parallax-layer-3 {
+    background: radial-gradient(circle at 50% 80%, rgba(201, 169, 126, 0.08) 0%, transparent 50%);
+}
+
+/* ========================================
+   HERO SECTION
+   ======================================== */
+.hero-section {
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    position: relative;
+}
+
+.hero-content {
+    z-index: 1;
+}
+
+.appear-text {
+    font-size: 4rem;
+    font-weight: 300;
+    letter-spacing: 2px;
+    opacity: 0;
+    animation: fadeInUp 1.5s ease forwards;
+    animation-delay: 0.5s;
+}
+
+@keyframes fadeInUp {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+}
+
+.scroll-indicator {
+    position: absolute;
+    bottom: 50px;
+    left: 50%;
+    transform: translateX(-50%);
+    opacity: 0;
+    animation: fadeIn 1s ease forwards, bounce 2s ease infinite;
+    animation-delay: 2s, 3s;
+}
+
+@keyframes fadeIn {
+    to { opacity: 1; }
+}
+
+@keyframes bounce {
+    0%, 100% { transform: translateX(-50%) translateY(0); }
+    50% { transform: translateX(-50%) translateY(-10px); }
+}
+
+.scroll-indicator span {
+    font-size: 2rem;
+    display: block;
+}
+
+.scroll-indicator p {
+    font-size: 0.9rem;
+    margin-top: 0.5rem;
+}
+
+/* ========================================
+   TIMELINE MOMENTS
+   ======================================== */
+.timeline-moment {
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 4rem 2rem;
+    position: relative;
+    transition: var(--transition-smooth);
+}
+
+/* Estilo Nostálgico */
+.timeline-moment.nostalgic {
+    background: var(--nostalgic-overlay);
+}
+
+.timeline-moment.nostalgic .moment-date {
+    color: var(--nostalgic-accent);
+}
+
+.timeline-moment.nostalgic .moment-image {
+    filter: sepia(0.3) contrast(0.9);
+}
+
+/* Zona de Transición */
+.timeline-moment.transition-zone {
+    background: linear-gradient(to bottom, var(--nostalgic-overlay), var(--vibrant-bg));
+}
+
+.timeline-moment.transition-zone .moment-image {
+    filter: sepia(0.1);
+}
+
+/* Estilo Vibrante */
+.timeline-moment.vibrant {
+    background: var(--vibrant-bg);
+}
+
+.timeline-moment.vibrant .moment-date {
+    color: var(--vibrant-accent);
+}
+
+.timeline-moment.vibrant .moment-text {
+    color: var(--vibrant-text);
+}
+
+.timeline-moment.vibrant .moment-image {
+    filter: none;
+    box-shadow: 0 15px 40px rgba(255, 23, 68, 0.3);
+}
+
+/* Layout del contenido */
+.moment-content {
+    max-width: 1200px;
+    width: 100%;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    align-items: center;
+    opacity: 0;
+    transform: translateY(50px);
+    transition: opacity 0.8s ease, transform 0.8s ease;
+}
+
+.moment-content.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.moment-content.reverse {
+    direction: rtl;
+}
+
+.moment-content.reverse > * {
+    direction: ltr;
+}
+
+.moment-image-container {
+    position: relative;
+    overflow: hidden;
+    border-radius: 20px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+}
+
+.moment-image {
+    width: 100%;
+    height: auto;
+    display: block;
+    transition: transform 0.5s ease, filter 0.8s ease;
+}
+
+.moment-image-container:hover .moment-image {
+    transform: scale(1.05);
+}
+
+.moment-text {
+    padding: 2rem;
+}
+
+.moment-date {
+    font-size: 2.5rem;
+    font-weight: 300;
+    margin-bottom: 1.5rem;
+    position: relative;
+    display: inline-block;
+}
+
+.moment-date::after {
+    content: '';
+    position: absolute;
+    bottom: -10px;
+    left: 0;
+    width: 60px;
+    height: 3px;
+    background: currentColor;
+}
+
+.moment-description {
+    font-size: 1.2rem;
+    line-height: 1.8;
+    font-family: 'Arial', sans-serif;
+}
+
+/* ========================================
+   SECCIÓN FINAL
+   ======================================== */
+.final-section {
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: linear-gradient(135deg, #ff6b9d 0%, #c06c84 50%, #6c5b7b 100%);
+    position: relative;
+    padding: 2rem;
+}
+
+.final-content {
+    text-align: center;
+    z-index: 2;
+    position: relative;
+}
+
+.final-question {
+    font-size: 4rem;
+    color: white;
+    margin-bottom: 3rem;
+    text-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+    opacity: 0;
+    animation: fadeInUp 1s ease forwards;
+}
+
+.interactive-heart {
+    cursor: pointer;
+    transition: transform 0.3s ease;
+}
+
+.interactive-heart:hover {
+    transform: scale(1.1);
+}
+
+.heart-svg {
+    width: 200px;
+    height: 200px;
+    filter: drop-shadow(0 10px 30px rgba(255, 23, 68, 0.5));
+}
+
+.heart-path {
+    fill: #ff1744;
+    transition: fill 0.3s ease;
+    animation: heartPulse 1.5s ease infinite;
+}
+
+@keyframes heartPulse {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.05); }
+}
+
+.interactive-heart:hover .heart-path {
+    fill: #ff4081;
+}
+
+.heart-instruction {
+    color: white;
+    font-size: 1.2rem;
+    margin-top: 1rem;
+    animation: fadeIn 1s ease forwards;
+    animation-delay: 1s;
+    opacity: 0;
+}
+
+.final-message {
+    margin-top: 3rem;
+    padding: 2rem;
+    background: rgba(255, 255, 255, 0.95);
+    border-radius: 20px;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+    transform: scale(0);
+    transition: transform 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+}
+
+.final-message.show {
+    transform: scale(1);
+}
+
+.final-message.hidden {
+    display: none;
+}
+
+.final-message h2 {
+    font-size: 3rem;
+    color: #ff1744;
+    margin-bottom: 1rem;
+}
+
+.final-message p {
+    font-size: 1.3rem;
+    color: #333;
+    line-height: 1.6;
+}
+
+/* Canvas de Confetti */
+#confetti-canvas {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 1;
+}
+
+/* ========================================
+   RESPONSIVE
+   ======================================== */
+@media (max-width: 768px) {
+    .appear-text {
+        font-size: 2.5rem;
+    }
+    
+    .moment-content {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+    }
+    
+    .moment-content.reverse {
+        direction: ltr;
+    }
+    
+    .moment-date {
+        font-size: 2rem;
+    }
+    
+    .moment-description {
+        font-size: 1rem;
+    }
+    
+    .final-question {
+        font-size: 2.5rem;
+    }
+    
+    .heart-svg {
+        width: 150px;
+        height: 150px;
+    }
+    
+    .login-container {
+        padding: 2rem 1.5rem;
+    }
+    
+    .login-title {
+        font-size: 1.5rem;
+    }
+}
+
+/* ========================================
+   UTILIDADES
+   ======================================== */
+.hidden {
+    display: none !important;
+}
+
+/* Smooth scroll para toda la página */
+html {
+    scroll-behavior: smooth;
+}

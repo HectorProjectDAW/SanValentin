@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nuestro Viaje ❤️</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <!-- PANTALLA DE LOGIN -->
+    <div id="login-screen" class="active">
+        <div class="login-container">
+            <div class="heart-icon">❤️</div>
+            <h1 class="login-title">Una Historia Especial</h1>
+            <p class="login-subtitle">Escribe la palabra mágica para comenzar...</p>
+            <input type="text" id="password-input" placeholder="¿Cuál es nuestra palabra?" autocomplete="off">
+            <button id="enter-btn">Entrar</button>
+            <p class="error-message" id="error-msg"></p>
+        </div>
+    </div>
+
+    <!-- CONTENIDO PRINCIPAL -->
+    <div id="main-content">
+        <!-- Música de fondo para el storytelling -->
+        <audio id="bg-music" loop>
+            <source src="./assets/audio/storytelling.mp3" type="audio/mpeg">
+        </audio>
+
+        <!-- Música para la propuesta final -->
+        <audio id="final-music">
+            <source src="./assets/audio/propuesta.mp3" type="audio/mpeg">
+        </audio>
+
+        <!-- PARALLAX BACKGROUND LAYERS -->
+        <div class="parallax-bg" id="parallax-layer-1"></div>
+        <div class="parallax-bg" id="parallax-layer-2"></div>
+        <div class="parallax-bg" id="parallax-layer-3"></div>
+
+        <!-- INICIO DEL VIAJE -->
+        <section class="hero-section">
+            <div class="hero-content">
+                <h1 class="appear-text">Ola amor</h1>
+                <div class="scroll-indicator">
+                    <span>⬇</span>
+                    <p>Desliza aquí abajo :D</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- HITOS DE LA LÍNEA DE TIEMPO (7 momentos) -->
+        <section class="timeline-moment nostalgic" data-moment="1">
+            <div class="moment-content">
+                <div class="moment-image-container">
+                    <img src="./assets/img/1.jpeg" alt="Nuestro primer momento" class="moment-image">
+                </div>
+                <div class="moment-text">
+                    <h2 class="moment-date">03/03/24</h2>
+                    <p class="moment-description">
+                        El día en el que empezamos a salir. Estaba nervioso de estar a tu lado aún. No me arrepiento de
+                        haber salido en fallas por primera vez :p
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <section class="timeline-moment nostalgic" data-moment="2">
+            <div class="moment-content reverse">
+                <div class="moment-text">
+                    <h2 class="moment-date">Tu graduación</h2>
+                    <p class="moment-description">
+                        Estaba super nervioso por conocer a tu familia. Aún más de no gustarles. Menos mal que al final
+                        no nos conocimos del todo ese día, y que toda la atención te la llevaras tu por tu día tan
+                        especial.
+                    </p>
+                </div>
+                <div class="moment-image-container">
+                    <img src="./assets/img/2.jpeg" alt="Segundo momento" class="moment-image">
+                </div>
+            </div>
+        </section>
+
+        <section class="timeline-moment nostalgic" data-moment="3">
+            <div class="moment-content">
+                <div class="moment-image-container">
+                    <img src="./assets/img/3.jpeg" alt="Tercer momento" class="moment-image">
+                </div>
+                <div class="moment-text">
+                    <h2 class="moment-date">Pista de hielo</h2>
+                    <p class="moment-description">
+                        Ya llevabamos un tiempo saliendo, y teníamos ganas de hacer nuevas cosas, y que mejor que ir a
+                        un sitio donde me podías enseñar una cosa que te apasiona. Poder verte tan emocionada haciendo
+                        cosas que te gustan me pone muy feliz.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <section class="timeline-moment nostalgic" data-moment="4">
+            <div class="moment-content reverse">
+                <div class="moment-text">
+                    <h2 class="moment-date">Concierto de Kendrick</h2>
+                    <p class="moment-description">
+                        Me acuerdo que era nuestro primer viaje a otro sitio (sin contar Benidorm) que haciamos juntos
+                        con nuestro dinero. De los mejores fin de semanas que he vivido. Muchas gracias por haber
+                        compartido algo que me apasionaba conmigo, y encima, que lo disfrutases. Me haces la persona más
+                        feliz del mundo.
+                    </p>
+                </div>
+                <div class="moment-image-container">
+                    <img src="./assets/img/4.jpeg" alt="Cuarto momento" class="moment-image">
+                </div>
+            </div>
+        </section>
+
+        <section class="timeline-moment nostalgic" data-moment="5">
+            <div class="moment-content">
+                <div class="moment-image-container">
+                    <img src="./assets/img/5.jpeg" alt="Quinto momento" class="moment-image">
+                </div>
+                <div class="moment-text">
+                    <h2 class="moment-date">Feria de Albacete</h2>
+                    <p class="moment-description">
+                        Aquí estaba nervioso de conocer a tu familia paterna, pero me hicieron sentir como en casa.
+                        Vivir esa experiencia tan viva contigo me permitió conocerme mejor, me demostraste que aún me
+                        apasionan las cosas. Me demostraste que cada día me apasionas más.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- ZONA DE TRANSICIÓN: Aquí empieza el cambio de atmósfera -->
+        <section class="timeline-moment transition-zone" data-moment="6">
+            <div class="moment-content reverse">
+                <div class="moment-text">
+                    <h2 class="moment-date">Benidorm</h2>
+                    <p class="moment-description">
+                        Los 4 días que fuimos a Benidorm juntos. En verano cuando vamos con tus papis. Cuando hemos ido
+                        otras veces. Cada vez que vamos allí y podemos disfrutar como si estuvieramos viviendo juntos,
+                        me dan más ganas de hacer ese sueño realidad.
+                    </p>
+                </div>
+                <div class="moment-image-container">
+                    <img src="./assets/img/6.jpeg" alt="Sexto momento" class="moment-image">
+                </div>
+            </div>
+        </section>
+
+        <section class="timeline-moment vibrant" data-moment="7">
+            <div class="moment-content">
+                <div class="moment-image-container">
+                    <img src="./assets/img/7.jpeg" alt="Séptimo momento" class="moment-image">
+                </div>
+                <div class="moment-text">
+                    <h2 class="moment-date">El Presente</h2>
+                    <p class="moment-description">
+                        Y aquí estamos ahora. Todos los momentos que hemos vivido. Todos los que nos quedan por vivir.
+                        Todo lo que tenga que ver contigo y tus aficiones, me encanta. Eres lo más bonito que me ha
+                        pasado nunca, en todos los aspectos. Gracias por ser tú.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECCIÓN FINAL: LA PREGUNTA -->
+        <section class="final-section" id="final-section">
+            <div class="final-content">
+                <h1 class="final-question">
+                    ¿Quieres ser mi San Valentín?
+                </h1>
+
+                <div class="interactive-heart" id="interactive-heart">
+                    <svg viewBox="0 0 100 100" class="heart-svg">
+                        <path
+                            d="M50,90 C50,90 10,65 10,40 C10,25 20,15 30,15 C40,15 45,22 50,30 C55,22 60,15 70,15 C80,15 90,25 90,40 C90,65 50,90 50,90 Z"
+                            class="heart-path" />
+                    </svg>
+                    <p class="heart-instruction">Toca el corazón ❤️</p>
+                </div>
+
+                <div class="final-message hidden" id="final-message">
+                    <h2>OLEE 🎉</h2>
+                    <p>
+                        Este es solo el comienzo de muchos más capítulos juntos.
+                        Cada día contigo es un regalo. Te amo cariño.
+                    </p>
+                </div>
+            </div>
+
+            <!-- Canvas para el efecto confetti -->
+            <canvas id="confetti-canvas"></canvas>
+        </section>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
